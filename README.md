@@ -15,7 +15,7 @@ Handbook: **[English](docs/handbook-en.html)** · **[Español](docs/handbook-es.
 |---|---|---|
 | Windows | `KuentaPOS-Setup-<version>.exe` (Node.js included) | Start menu → *KuentaPOS* or *KuentaPOS (network)* |
 | Linux / macOS | Node.js 22.13 or later, then `./installer/unix/install.sh` | `kuentapos` (network: `kuentapos --netzwerk`) |
-| Container (Docker/Podman) | ready-made image `ghcr.io/therapycenter/kuentapos:1.9.0` or `podman build -t kuentapos:1.9.0 .` or `docker compose up -d --build` | `http://<computer>:3700` (data in the volume `/data`) |
+| Container (Docker/Podman) | ready-made image `ghcr.io/therapycenter/kuentapos:2.0.0` or `podman build -t kuentapos:2.0.0 .` or `docker compose up -d --build` | `http://<computer>:3700` (data in the volume `/data`) |
 | Umbrel | App Store → ⋯ → *Community App Stores* → `https://github.com/TherapyCenter/umbrel-app-store` → install KuentaPOS | `http://umbrel.local:3700` |
 | Without installation | Node.js 22.13 or later | `KuentaPOS starten.bat`, `./kuentapos.sh` or `node server/index.js --open` |
 

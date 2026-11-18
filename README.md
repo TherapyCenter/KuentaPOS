@@ -110,3 +110,17 @@ Font: Liberation Sans (SIL Open Font License, `server/pdf/fonts/LICENSE`). QR co
 ## License
 
 Copyright © 2026 Doc (heidepower@proton.me). KuentaPOS is open source under the **GNU Affero General Public License 3.0** (`LICENSE`). All features, including SMS, WhatsApp Business and Telegram, are free to use without a license key. Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Screenshots
+
+**Invoice** – Switzerland with VAT (MWST), disbursement and CHF:
+
+![Invoice in the page preview](docs/screenshots/1-invoice.png)
+
+**Receipt** – Austrian cash register with the RKSV code:
+
+![Receipt with RKSV QR code](docs/screenshots/2-receipt.png)
+
+**Swiss QR-bill** – receipt and payment part on the invoice:
+
+![Swiss QR-bill](docs/screenshots/3-qr-bill.png)

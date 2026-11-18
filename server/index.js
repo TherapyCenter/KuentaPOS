@@ -223,6 +223,8 @@ route('GET', '/api/auswertung/serienbrief', (ctx) => FI.serienbriefEmpfaenger(ct
 route('GET', '/api/dashboard', () => FI.dashboard());
 // exchange rates for display only (invoices stay in euros)
 route('GET', '/api/kurse/aktuell', () => require('./kurse').aktuell());
+// update notice: newest release on GitHub (only displayed, never installed automatically)
+route('GET', '/api/update', (ctx) => require('./update').status({ jetzt: ctx.q.jetzt === '1' }));
 route('GET', '/api/protokoll', (ctx) => L.db().prepare('SELECT * FROM SW_PROTOKOLL ORDER BY ID DESC LIMIT ?').all(Math.min(Number(ctx.q.limit) || 500, 5000)));
 
 // e-invoice

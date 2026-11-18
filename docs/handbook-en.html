@@ -845,6 +845,10 @@ docker compose up -d --build</code></pre></div>
 
     <section id="update">
       <h2>Updating and rolling out</h2>
+      <h3>Noticing a new version</h3>
+      <p>At most once a day KuentaPOS asks GitHub whether there is a newer release. If there is, <strong>⬆ Update available</strong> appears at the bottom right of the status bar. Clicking it shows the new version, the download link and the steps to update. <span class="path">Help → About KuentaPOS</span> also shows whether you are using the latest version.</p>
+      <p>Only the version number is requested. No data from KuentaPOS is transmitted, and an update is never installed automatically. Under <span class="path">Settings → Defaults → Updates</span> the check can be switched off per tenant or run right away with <strong>Check now</strong>. The environment variable <code>KUENTAPOS_UPDATE_CHECK=0</code> switches it off for the whole server.</p>
+      <h3>Installing an update</h3>
       <p>To update, simply run the new installer. It does everything itself:</p>
       <ol class="steps">
         <li><div><strong>Find a running KuentaPOS</strong><span>The installer looks for KuentaPOS processes from the program folder, including the console window.</span></div></li>
@@ -997,6 +1001,7 @@ docker compose up -d --build</code></pre></div>
           <tr><td><code>HOST</code></td><td><code>127.0.0.1</code></td><td><code>0.0.0.0</code> shares KuentaPOS in the network</td></tr>
           <tr><td><code>KUENTAPOS_DATA</code></td><td>user profile</td><td>a different data folder on a local drive, e.g. a second hard disk. Do not put it on a network drive or NAS (see <a href="#sicherung">Backup</a>).</td></tr>
           <tr><td><code>KUENTAPOS_LANG</code></td><td>language of Windows</td><td><code>de</code>, <code>en</code>, <code>es</code>, <code>fr</code>, <code>it</code> or <code>nl</code>: language of the console window and of new installations</td></tr>
+          <tr><td><code>KUENTAPOS_UPDATE_CHECK</code></td><td><code>1</code></td><td><code>0</code> switches off the notice about new versions, including “Check now” (computers without internet, software distribution)</td></tr>
         </tbody>
       </table></div>
       <h3>Development and installer</h3>

@@ -18,6 +18,8 @@ The environment variable `KUENTAPOS_DATA` sets a different folder, e.g. a second
 
 > **Never put the data folder on a network drive or NAS.** KuentaPOS works in its database all the time. Over a network share (SMB/NFS) the database can get damaged, e.g. during a short network outage. KuentaPOS shows a warning at start if the data folder is on a network drive. Network mode is meant for several workstations (one computer holds the data, the others work in the browser). **Backups**, on the other hand, may and should go to a NAS or another drive: *KuentaPOS → Back up data* → backup folder.
 
+**Noticing a new version:** at most once a day KuentaPOS asks GitHub whether there is a newer [release](https://github.com/TherapyCenter/KuentaPOS/releases). If there is, *⬆ Update available* appears at the bottom right of the status bar. Clicking it shows the new version, the download link and the steps to update. Only the version number is requested; no data from KuentaPOS is transmitted and nothing is installed automatically. Switch it off under *Settings → Defaults → Updates* (per tenant), where you also find *Check now*. The environment variable `KUENTAPOS_UPDATE_CHECK=0` switches the check off for the whole server, e.g. on computers without internet or with software distribution.
+
 ---
 
 ## Windows
@@ -200,6 +202,7 @@ Then open `http://<computer>:3700` in the browser.
 |---|---|---|
 | `TZ` | `Europe/Berlin` | time zone for invoice date and time, e.g. `-e TZ=Europe/Madrid` |
 | `PORT` | `3700` | port inside the container (mapped to the outside with `-p`) |
+| `KUENTAPOS_UPDATE_CHECK` | `1` | `0` switches off the notice about new versions |
 
 ### Operation
 

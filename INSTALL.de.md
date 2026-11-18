@@ -16,6 +16,8 @@ Mit der Umgebungsvariablen `KUENTAPOS_DATA` lässt sich ein anderer Ordner festl
 
 > **Datenordner nie auf ein Netzlaufwerk oder NAS legen.** KuentaPOS arbeitet ständig in seiner Datenbank. Über eine Netzwerkfreigabe (SMB/NFS) kann sie dabei beschädigt werden, z. B. bei einer kurzen Netzwerkstörung. KuentaPOS zeigt beim Start eine Warnung, wenn der Datenordner auf einem Netzlaufwerk liegt. Für mehrere Arbeitsplätze ist der Netzwerkbetrieb gedacht (ein Rechner hält die Daten, die anderen arbeiten im Browser). **Sicherungen** dürfen und sollten dagegen auf ein NAS oder einen anderen Datenträger: *KuentaPOS → Daten sichern* → Sicherungsordner.
 
+**Neue Version erkennen:** KuentaPOS fragt höchstens einmal am Tag bei GitHub nach, ob es ein neueres [Release](https://github.com/TherapyCenter/KuentaPOS/releases) gibt. Ist eines da, erscheint unten rechts in der Statusleiste *⬆ Update verfügbar*. Ein Klick darauf zeigt die neue Version, den Link zum Download und die Schritte zum Aktualisieren. Dabei wird nur die Versionsnummer abgefragt; es werden keine Daten aus KuentaPOS übertragen und nichts automatisch installiert. Abschalten unter *Einstellungen → Vorgabewerte → Updates* (je Mandant), dort gibt es auch *Jetzt prüfen*. Die Umgebungsvariable `KUENTAPOS_UPDATE_CHECK=0` schaltet die Prüfung für den ganzen Server ab, z. B. bei Rechnern ohne Internet oder bei Softwareverteilung.
+
 ---
 
 ## Windows
@@ -198,6 +200,7 @@ Danach im Browser `http://<Rechner>:3700` öffnen.
 |---|---|---|
 | `TZ` | `Europe/Berlin` | Zeitzone für Rechnungsdatum und Uhrzeit, z. B. `-e TZ=Europe/Vienna` |
 | `PORT` | `3700` | Port im Container (Zuordnung nach außen über `-p`) |
+| `KUENTAPOS_UPDATE_CHECK` | `1` | `0` schaltet den Hinweis auf neue Versionen ab |
 
 ### Bedienung
 

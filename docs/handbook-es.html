@@ -845,6 +845,10 @@ docker compose up -d --build</code></pre></div>
 
     <section id="update">
       <h2>Actualizar y desplegar</h2>
+      <h3>Saber si hay una versión nueva</h3>
+      <p>Como máximo una vez al día KuentaPOS consulta en GitHub si hay una versión más reciente. Si la hay, aparece abajo a la derecha, en la barra de estado, <strong>⬆ Actualización disponible</strong>. Al hacer clic se muestran la nueva versión, el enlace de descarga y los pasos para actualizar. También <span class="path">Ayuda → Acerca de KuentaPOS</span> indica si usa la versión más reciente.</p>
+      <p>Solo se consulta el número de versión. No se transmite ningún dato de KuentaPOS y una actualización nunca se instala automáticamente. En <span class="path">Ajustes → Valores predeterminados → Actualizaciones</span> puede desactivar la comprobación para cada empresa o ejecutarla al momento con <strong>Comprobar ahora</strong>. La variable de entorno <code>KUENTAPOS_UPDATE_CHECK=0</code> la desactiva para todo el servidor.</p>
+      <h3>Instalar una actualización</h3>
       <p>Para actualizar, simplemente ejecute el nuevo instalador. Se encarga de todo:</p>
       <ol class="steps">
         <li><div><strong>Buscar un KuentaPOS en marcha</strong><span>El instalador busca procesos de KuentaPOS de la carpeta del programa, incluida la ventana de consola.</span></div></li>
@@ -997,6 +1001,7 @@ docker compose up -d --build</code></pre></div>
           <tr><td><code>HOST</code></td><td><code>127.0.0.1</code></td><td><code>0.0.0.0</code> comparte KuentaPOS en la red</td></tr>
           <tr><td><code>KUENTAPOS_DATA</code></td><td>perfil de usuario</td><td>otra carpeta de datos en una unidad local, p. ej. un segundo disco. No la ponga en una unidad de red ni en un NAS (véase <a href="#sicherung">Copias de seguridad</a>).</td></tr>
           <tr><td><code>KUENTAPOS_LANG</code></td><td>idioma de Windows</td><td><code>de</code>, <code>en</code>, <code>es</code>, <code>fr</code>, <code>it</code> o <code>nl</code>: idioma de la ventana de consola y de las instalaciones nuevas</td></tr>
+          <tr><td><code>KUENTAPOS_UPDATE_CHECK</code></td><td><code>1</code></td><td><code>0</code> desactiva el aviso de versiones nuevas, también «Comprobar ahora» (equipos sin internet, distribución de software)</td></tr>
         </tbody>
       </table></div>
       <h3>Desarrollo e instalador</h3>

@@ -53,6 +53,35 @@ const App = {
     window.addEventListener('hashchange', () => this.go(location.hash.slice(1) || 'start', false));
     this.go(location.hash.slice(1) || 'start', false);
     if (this.session.warnung) alertDlg(this.session.warnung, 'Achtung: Datenordner');
+    setTimeout(() => this.updatePruefen(), 3000);
+    setInterval(() => this.updatePruefen(), 6 * 3600e3);
+  },
+  // Update notice: the server asks GitHub at most once a day; a newer version appears in the status bar
+  async updatePruefen(jetzt = false) {
+    let r;
+    try { r = await api('/api/update' + (jetzt ? '?jetzt=1' : '')); } catch (e) { if (jetzt) showError(e); return null; }
+    this.update = r;
+    const sb = $('#status-right');
+    $$('.update-hinweis', sb).forEach(x => x.remove());
+    if (r.neu) {
+      sb.prepend(h('button', { class: 'update-hinweis', title: 'Details zum Update', onclick: () => this.updateDialog() }, `⬆ Update verfügbar: KuentaPOS ${r.neueste}`));
+      // tell every workstation once per new version
+      if (Pref.get('update.gemeldet', '') !== r.neueste) { Pref.set('update.gemeldet', r.neueste); toast(`Neue Version KuentaPOS ${r.neueste} verfügbar (installiert: ${r.version}).`); }
+    }
+    return r;
+  },
+  updateDialog() {
+    const r = this.update || {};
+    Win.open({ title: 'Update verfügbar', width: 520, content: h('div', { style: { lineHeight: 1.6 } },
+      h('h2', { style: { margin: '0 0 6px', color: 'var(--accent)' } }, `KuentaPOS ${r.neueste}`),
+      h('p', null, `Installiert ist Version ${r.version}.`, r.datum ? [' ', `Veröffentlicht am ${fmt.date(r.datum)}.`] : null),
+      h('p', null, h('a', { href: r.url || r.seite, target: '_blank', rel: 'noopener' }, 'Release bei GitHub öffnen (Änderungen und Download)')),
+      h('p', null, h('b', null, 'So aktualisieren Sie:')),
+      h('ul', { style: { margin: '0 0 8px', paddingLeft: '20px' } },
+        h('li', null, 'Windows: neuen Setup herunterladen und starten. Ihre Daten bleiben erhalten.'),
+        h('li', null, 'Linux / macOS: neue Version holen (git pull oder Archiv) und ./installer/unix/install.sh erneut ausführen.'),
+        h('li', null, 'Container: neues Image holen und den Container neu anlegen. Die Daten im Volume bleiben erhalten.')),
+      h('p', { class: 'hint' }, 'Vorher empfiehlt sich eine Datensicherung. Die Update-Prüfung lässt sich unter Einstellungen → Vorgabewerte abschalten.')) });
   },
   // Convert CMYK or very large logos once into an RGB PNG suitable for PDF/A (the browser can read any JPEG)
   async logoPruefen() {
@@ -191,7 +220,9 @@ const App = {
     Win.open({ title: 'Über KuentaPOS', width: 480, content: h('div', { style: { lineHeight: 1.6 } }, h('h2', { style: { margin: '0 0 6px', color: 'var(--accent)' } }, 'KuentaPOS ' + this.session.version),
       h('p', null, 'Werkstatt-Faktura für Kfz-Betriebe als plattformunabhängige Webanwendung (Windows, macOS, Linux, Tablet).'),
       h('p', null, 'Kompatibel mit Datensicherungen von KFZ-Faktura (*.kfz, DB1.bak). E-Rechnung nach EN 16931 (XRechnung CII/UBL).'),
-      h('p', null, '© 2026 Doc · Open Source unter der GNU AGPL 3.0. Alle Funktionen sind kostenlos.')) });
+      h('p', null, '© 2026 Doc · Open Source unter der GNU AGPL 3.0. Alle Funktionen sind kostenlos.'),
+      this.update && this.update.neu ? h('p', null, h('button', { class: 'btn primary', onclick: () => this.updateDialog() }, `⬆ Update verfügbar: KuentaPOS ${this.update.neueste}`))
+        : this.update && this.update.neueste ? h('p', { class: 'hint' }, 'Sie verwenden die neueste Version.') : null) });
   },
 };
 window.App = App;

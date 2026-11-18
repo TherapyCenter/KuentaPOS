@@ -840,6 +840,10 @@ docker compose up -d --build</code></pre></div>
 
     <section id="update">
       <h2>Update und Ausrollen</h2>
+      <h3>Neue Version erkennen</h3>
+      <p>KuentaPOS fragt höchstens einmal am Tag bei GitHub nach, ob es ein neueres Release gibt. Ist eines da, erscheint unten rechts in der Statusleiste <strong>⬆ Update verfügbar</strong>. Ein Klick darauf zeigt die neue Version, den Link zum Download und die Schritte zum Aktualisieren. Auch <span class="path">Hilfe → Über KuentaPOS</span> zeigt, ob Sie die neueste Version verwenden.</p>
+      <p>Dabei wird nur die Versionsnummer abgefragt. Es werden keine Daten aus KuentaPOS übertragen, und ein Update wird nie automatisch installiert. Unter <span class="path">Einstellungen → Vorgabewerte → Updates</span> lässt sich die Prüfung je Mandant abschalten oder mit <strong>Jetzt prüfen</strong> sofort ausführen. Für den ganzen Server schaltet sie die Umgebungsvariable <code>KUENTAPOS_UPDATE_CHECK=0</code> ab.</p>
+      <h3>Update einspielen</h3>
       <p>Für ein Update führen Sie einfach den neuen Installer aus. Er erledigt alles selbst:</p>
       <ol class="steps">
         <li><div><strong>Laufendes KuentaPOS finden</strong><span>Der Installer sucht KuentaPOS-Prozesse aus dem Programmordner, auch das Konsolenfenster.</span></div></li>
@@ -991,6 +995,7 @@ docker compose up -d --build</code></pre></div>
           <tr><td><code>HOST</code></td><td><code>127.0.0.1</code></td><td><code>0.0.0.0</code> gibt KuentaPOS im Netzwerk frei</td></tr>
           <tr><td><code>KUENTAPOS_DATA</code></td><td>Benutzerprofil</td><td>anderer Datenordner auf einem lokalen Laufwerk, z. B. einer zweiten Festplatte. Nicht auf ein Netzlaufwerk oder NAS legen (siehe <a href="#sicherung">Datensicherung</a>).</td></tr>
           <tr><td><code>KUENTAPOS_LANG</code></td><td>Sprache von Windows</td><td><code>de</code>, <code>en</code>, <code>es</code>, <code>fr</code>, <code>it</code> oder <code>nl</code>: Sprache des Konsolenfensters und neuer Installationen. Bestehende Installationen bleiben auf Deutsch, bis Sie die Sprache umstellen.</td></tr>
+          <tr><td><code>KUENTAPOS_UPDATE_CHECK</code></td><td><code>1</code></td><td><code>0</code> schaltet den Hinweis auf neue Versionen ab, auch „Jetzt prüfen“ (Rechner ohne Internet, Softwareverteilung)</td></tr>
         </tbody>
       </table></div>
       <h3>Entwicklung und Installer</h3>
